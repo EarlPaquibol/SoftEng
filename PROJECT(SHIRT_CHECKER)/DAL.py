@@ -57,7 +57,7 @@ def newCustomer(studNum, fullName, phoneNum, shType, shSize, price, payment, sta
     cur = con.cursor()
     cur.execute("INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (studNum, fullName, phoneNum, shType, shSize, price, payment, status, datetime.date.today()))
     con.commit()
-
+    con.close()
     return cur.lastrowid
 
 def delete_Customer(deleteRow):

@@ -2,8 +2,7 @@ import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QMessageBox
-from signUpPage import *
-from mainPage import mainPage
+from mainPage import *
 import BLL
 
 
@@ -15,7 +14,7 @@ class LoginPage(QtWidgets.QMainWindow):
 
         self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password) #HIDE PASSWORD
         self.pushButton_login.clicked.connect(self.loginButton_clicked)
-        self.pushButton_signUp.clicked.connect(self.signUpButton_clicked)
+        # self.pushButton_signUp.clicked.connect(self.signUpButton_clicked)
 
     def loginButton_clicked(self):
         if(self.checkInputs()):
@@ -39,10 +38,10 @@ class LoginPage(QtWidgets.QMainWindow):
         else:
             return True
 
-    def signUpButton_clicked(self):
-        self.ui = signUp()
-        self.ui.show()
-        self.close()
+    # def signUpButton_clicked(self):
+    #     self.ui = signUp()
+    #     self.ui.show()
+    #     self.close()
 
     def popUpbox(self, tMsg):
         msg = QMessageBox()
