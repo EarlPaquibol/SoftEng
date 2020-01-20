@@ -13,7 +13,7 @@ class LoginPage(QtWidgets.QMainWindow):
         loadUi("loginPage.ui", self)
         self.show()
 
-        self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password) #HIDE PASSWORD
         self.pushButton_login.clicked.connect(self.loginButton_clicked)
         self.pushButton_signUp.clicked.connect(self.signUpButton_clicked)
 
@@ -27,7 +27,7 @@ class LoginPage(QtWidgets.QMainWindow):
                 self.popUpbox("ERROR!")
 
     def checkInputs(self):
-        if(self.lineEdit_username.text() == "" or self.lineEdit_password.text() == ""):
+        if(self.lineEdit_username.text() == "" and self.lineEdit_password.text() == ""):
             self.popUpbox("DO NOT LEAVE INPUT FIELDS EMPTY!")
             return False
         elif(self.lineEdit_username.text() == ""):

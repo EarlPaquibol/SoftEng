@@ -51,6 +51,7 @@ def checkLogin(userN, passW):
         return result[0][0]
 
 
+
 def newCustomer(studNum, fullName, phoneNum, shType, shSize, price, payment, status):
     con = connectToDB()
     cur = con.cursor()
