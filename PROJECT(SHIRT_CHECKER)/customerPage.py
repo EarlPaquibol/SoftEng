@@ -2,15 +2,15 @@ import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QMessageBox
-from mainPage import *
 import BLL
-
+import mainPage
 
 class customerPage(QtWidgets.QMainWindow):
     def __init__(self):
         super(customerPage, self).__init__()
         loadUi("customerPage.ui", self)
         self.show()
+
 
         self.pushButton_add.clicked.connect(self.addButton_clicked)
         self.pushButton_cancelAdd.clicked.connect(self.backToMainPage)
@@ -24,10 +24,9 @@ class customerPage(QtWidgets.QMainWindow):
                 self.backToMainPage()
 
     def backToMainPage(self):
-        self.ui = mainPage()
-        self.ui.show()
+        self.newWindow = mainPage.mainPage()
         self.close()
-
+        self.newWindow.show()
 
     def errorBox(self, tMsg):
         msg = QMessageBox()
@@ -60,10 +59,3 @@ class customerPage(QtWidgets.QMainWindow):
             return False
         else:
             return True
-
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    window = customerPage()
-    window.show()
-    sys.exit(app.exec_())

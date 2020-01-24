@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QMessageBox
 import BLL
+import mainPage
 
 class signUp(QtWidgets.QMainWindow):
     def __init__(self):
@@ -11,13 +12,13 @@ class signUp(QtWidgets.QMainWindow):
         self.show()
 
         self.pushButton_create.clicked.connect(self.createButton_clicked)
-        self.pushButton_cancel.clicked.connect(self.backToLogin)
+        self.pushButton_cancel.clicked.connect(self.backToMainPage)
 
     def createButton_clicked(self):
         if(self.checkInputs()):
             newAccountObj = BLL.account(self.lineEdit_firstNameSU.text(), self.lineEdit_lastNameSU.text(), self.lineEdit_studNum.text(), self.lineEdit_usernameSU.text(), self.lineEdit_passwordSU.text())
             if(newAccountObj.createAccount() == int(self.lineEdit_studNum.text())):
-                self.backToLogin()
+                self.backToMainPage()
 
     def checkInputs(self):
         if(self.lineEdit_firstNameSU.text() == "" or self.lineEdit_lastNameSU.text() == "" or self.lineEdit_studNum.text() == "" or self.lineEdit_usernameSU.text() == "" or self.lineEdit_passwordSU.text() == ""):
@@ -38,10 +39,10 @@ class signUp(QtWidgets.QMainWindow):
         else:
             return True
 
-    def backToLogin(self):
-        self.ui = LoginPage()
-        self.ui.show()
+    def backToMainPage(self):
+        self.newWindow = mainPage.mainPage()
         self.close()
+        self.newWindow.show()
 
     def warningBox(self,tMsg):
         msg = QMessageBox()
@@ -50,9 +51,3 @@ class signUp(QtWidgets.QMainWindow):
         msg.setWindowTitle("SIGN UP FAILED")
         msg.setStandardButtons(QMessageBox.Ok)
         x = msg.exec_()
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    window = signUp()
-    window.show()
-    sys.exit(app.exec_())
